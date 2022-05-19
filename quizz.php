@@ -1,14 +1,18 @@
 <?php
     // Souvent on identifie cet objet par la variable $conn ou $db
-    $dsn = 'mysql:host=sql11493623;dbname=???;port=3306;charset="utf-8"'
-    $mysqlConnection = new PDO(
-    $dsn,
-    'sql11493623',
-    'aR7jHuVJU5'
-    );
+    try
+    {
+        $dsn = 'mysql:host=sql11.freemysqlhosting.net;dbname=sql11493623;port=3306;charset=utf-8';
+        $bdd = new PDO($dsn,'sql11493623','aR7jHuVJU5');
+        echo($dd);
+    }
+    catch (Exception $e)
+    {
+        echo($dd);
+	    die('Erreur : ' . $e->getMessage());
+    }
 ?>
 
-<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -33,7 +37,13 @@
                     </div>
                     <input type="submit" name="Envoyer">
                 </forms>
-                
+                <?php
+                    if (isset($_POST["reponse_sol"])){
+
+                        $reponse = $bdd->query(" INSERT INTO `Sol` (`id`, `reponse_sol`) VALUES ('','$_POST[reponse_sol]')");
+                    }
+                    
+                ?>
             </div>
         </div>
         <div class = "footer">
